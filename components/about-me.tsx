@@ -307,7 +307,7 @@ export default function AboutMe() {
                 transition={{ duration: 1 }}
               >
                 <Image
-                  src="/placeholder.svg?height=1200&width=1200"
+                  src="/images/profile.png"
                   alt="Profile"
                   fill
                   className="object-cover"
