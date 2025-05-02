@@ -68,9 +68,9 @@ export default function ProjectShowcase() {
     <section id="projects" className="w-full py-24 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
           viewport={{ once: true }}
           className="text-center"
         >
@@ -134,16 +134,15 @@ function ProjectCard({ project, index }: ProjectCardProps) {
     <motion.div
       className="flex-shrink-0 w-[280px] md:w-[320px] group"
       whileHover={{
-        y: -8,
+        scale: 1.05, // Subtle scale effect on hover
         transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
       }}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
-        y: 0,
         transition: {
-          duration: 0.5,
-          delay: (index % projects.length) * 0.1,
+          duration: 1,
+          delay: (index % projects.length) * 0.1, // Delay based on index
         },
       }}
     >

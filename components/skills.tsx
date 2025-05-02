@@ -28,11 +28,10 @@ const skillCategories = [
 
 // Animation variants for cool animation effects
 const cardVariants = {
-  hidden: { opacity: 0, scale: 0.9, rotate: -5 },
+  hidden: { opacity: 0, scale: 0.95 },
   visible: {
     opacity: 1,
     scale: 1,
-    rotate: 0,
     transition: { duration: 0.8, ease: "easeOut" },
   },
 }
@@ -50,9 +49,9 @@ export default function Skills() {
     <section id="skills" className="w-full py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >

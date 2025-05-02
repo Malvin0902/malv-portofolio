@@ -47,10 +47,9 @@ export default function AboutMe() {
 
   // Animation variants
   const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: {
         duration: 0.8,
         ease: [0.22, 1, 0.36, 1],
@@ -105,10 +104,10 @@ export default function AboutMe() {
 
   // Social media links
   const socialLinks = [
-    { icon: <Github className="h-5 w-5" />, url: "https://github.com", label: "GitHub" },
-    { icon: <Linkedin className="h-5 w-5" />, url: "https://linkedin.com", label: "LinkedIn" },
-    { icon: <Instagram className="h-5 w-5" />, url: "https://instagram.com", label: "Instagram" },
-    { icon: <Gamepad2 className="h-5 w-5" />, url: "https://steamcommunity.com", label: "Steam" },
+    { icon: <Github className="h-6 w-6" />, url: "https://github.com/Malvin0902", label: "GitHub" },
+    { icon: <Linkedin className="h-6 w-6" />, url: "https://linkedin.com", label: "LinkedIn" },
+    { icon: <Instagram className="h-6 w-6" />, url: "https://www.instagram.com/mlvn.raqin/", label: "Instagram" },
+    { icon: <Gamepad2 className="h-6 w-6" />, url: "https://steamcommunity.com/id/raqinn/", label: "Steam" },
   ]
 
   return (
@@ -120,9 +119,28 @@ export default function AboutMe() {
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
       >
+        {/* About Me Title */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
+          className="text-center mb-6"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.3 }}
+            className="text-lg text-muted-foreground"
+          >
+            Full Stack Developer | Tech Enthusiast | Analyst
+          </motion.p>
+        </motion.div>
+
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Profile Picture */}
-          <div className="flex justify-center md:justify-start">
+          <div className="flex justify-center md:justify-start md:ml-8">
             <motion.div className="relative" variants={itemVariants}>
               <motion.div
                 className="relative w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-background shadow-xl cursor-pointer"
@@ -138,10 +156,6 @@ export default function AboutMe() {
                   priority
                 />
               </motion.div>
-
-              {/* Decorative elements */}
-              <div className="absolute -z-10 -bottom-4 -right-4 w-32 h-32 bg-primary/5 rounded-full"></div>
-              <div className="absolute -z-10 -top-4 -left-4 w-24 h-24 bg-primary/5 rounded-full"></div>
             </motion.div>
           </div>
 
@@ -157,9 +171,9 @@ export default function AboutMe() {
                   <AnimatePresence mode="wait">
                     <motion.p
                       key={location}
-                      initial={{ y: 20, opacity: 0, scale: 0.95 }}
-                      animate={{ y: 0, opacity: 1, scale: 1 }}
-                      exit={{ y: -20, opacity: 0, scale: 0.95 }}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ duration: 0.4, ease: "easeInOut" }}
                     >
                       {location}
@@ -178,16 +192,15 @@ export default function AboutMe() {
             <motion.div className="mt-8" variants={itemVariants}>
               <h3 className="text-xl font-medium mb-6">Education</h3>
 
-              {/* New Education Timeline */}
+              {/* Education Timeline */}
               <div className="space-y-6">
                 {education.map((item, index) => (
                   <motion.div
                     key={index}
                     className="bg-card/40 backdrop-blur-sm rounded-xl border border-border/20 shadow-md overflow-hidden"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0 }}
                     whileInView={{
                       opacity: 1,
-                      y: 0,
                       transition: {
                         delay: 0.1 * index,
                         duration: 0.6,
@@ -195,10 +208,6 @@ export default function AboutMe() {
                       },
                     }}
                     viewport={{ once: true }}
-                    whileHover={{
-                      y: -5,
-                      transition: { duration: 0.3 },
-                    }}
                   >
                     <div className="p-5">
                       <div className="flex items-start gap-4">
@@ -236,24 +245,28 @@ export default function AboutMe() {
               </div>
             </motion.div>
 
-            <div className="flex space-x-4 pt-2">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="p-3 rounded-full bg-primary/5 hover:bg-primary/10 text-foreground transition-colors duration-200"
-                  custom={index}
-                  variants={socialVariants}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
-            </div>
+            {/* Contact Me Section */}
+            <motion.div className="mt-8" variants={itemVariants}>
+              <h3 className="text-xl font-medium mb-6">Reach Me Out!</h3>
+              <div className="flex space-x-4 pt-2 justify-center md:justify-start">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="p-4 rounded-full bg-primary/5 hover:bg-primary/10 text-foreground transition-colors duration-300 transform hover:scale-125"
+                    custom={index}
+                    variants={socialVariants}
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </motion.div>

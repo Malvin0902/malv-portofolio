@@ -18,20 +18,19 @@ export default function Hero() {
     visible: {
       opacity: 1,
       transition: { 
-        duration: 1.2,
+        duration: 1.5, // Increased duration for a smoother fade
         ease: [0.22, 1, 0.36, 1],
       }
     }
   }
   
-  // Smooth slide-up with fade for text elements
+  // Smooth fade-in for text elements
   const textAnimation = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: {
-        duration: 1.2,
+        duration: 1.5, // Adjusted duration for smoother text appearance
         ease: [0.22, 1, 0.36, 1]
       }
     }
@@ -43,7 +42,7 @@ export default function Hero() {
     visible: {
       backgroundPosition: "0% 0",
       transition: {
-        duration: 1.8,
+        duration: 2, // Slightly reduced duration for the gradient
         ease: [0.22, 1, 0.36, 1]
       }
     }
@@ -51,7 +50,7 @@ export default function Hero() {
 
   // Smooth scale animation for button
   const buttonAnimation = {
-    hidden: { opacity: 0, scale: 0.9 },
+    hidden: { opacity: 0, scale: 0.95 }, // Slight scale down for smoother appearance
     visible: {
       opacity: 1,
       scale: 1,
@@ -69,7 +68,7 @@ export default function Hero() {
         className="hero-gradient absolute inset-0 z-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 2.5, ease: "easeOut" }}
+        transition={{ duration: 3, ease: "easeOut" }} // Slower background transition for a smoother effect
       ></motion.div>
 
       {/* Content container */}
@@ -112,9 +111,9 @@ export default function Hero() {
               className="absolute inset-0 bg-primary/20 z-0"
               initial={{ scale: 0, opacity: 0 }}
               whileHover={{ 
-                scale: 1.5, 
+                scale: 1.4, // Reduced scale for more subtle effect
                 opacity: 1,
-                transition: { duration: 0.6, ease: "easeOut" }
+                transition: { duration: 0.5, ease: "easeOut" }
               }}
             />
           </Button>
@@ -128,8 +127,8 @@ export default function Hero() {
         animate={{ 
           opacity: 1,
           transition: {
-            duration: 1,
-            delay: 1, 
+            duration: 1.5, // Adjusted delay for smoother reveal
+            delay: 1.5,
           }
         }}
       >
@@ -138,7 +137,7 @@ export default function Hero() {
             y: [0, -8, 0], 
             transition: {
               y: {
-                duration: 2,
+                duration: 2.5, // Slightly slower duration for smoothness
                 ease: "easeInOut",
                 repeat: Infinity,
                 repeatType: "loop",
@@ -149,49 +148,17 @@ export default function Hero() {
             scale: 1.1,
             transition: { duration: 0.3, ease: "easeOut" }
           }}
-        >
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={scrollToProjects} 
-            className="rounded-full hover:bg-primary/10 transition-colors duration-300"
           >
-            <ArrowDown className="h-6 w-6" />
-          </Button>
-        </motion.div>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={scrollToProjects} 
+              className="rounded-full hover:bg-primary/10 transition-colors duration-300"
+            >
+              <ArrowDown className="h-6 w-6" />
+            </Button>
+          </motion.div>
       </motion.div>
-      
-      {/* Decorative floating elements */}
-      <motion.div 
-        className="absolute top-1/4 right-[10%] w-16 h-16 rounded-full bg-primary/5"
-        initial={{ y: 0 }}
-        animate={{ 
-          y: [-10, 10, -10],
-          transition: {
-            y: {
-              duration: 5,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatType: "loop"
-            }
-          }
-        }}
-      />
-      <motion.div 
-        className="absolute bottom-1/3 left-[15%] w-20 h-20 rounded-full bg-primary/3"
-        initial={{ y: 0 }}
-        animate={{ 
-          y: [10, -10, 10],
-          transition: {
-            y: {
-              duration: 7,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatType: "loop"
-            }
-          }
-        }}
-      />
     </section>
   )
 }

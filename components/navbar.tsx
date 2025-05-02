@@ -39,8 +39,14 @@ export default function Navbar() {
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
+            {/* Engaging Malv Text */}
             <Link href="/" className="text-xl font-semibold">
-              Malv
+              <motion.span
+                className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-900 hover:text-white hover:scale-105 transition-all duration-300"
+                style={{ textShadow: "0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.4)" }}
+              >
+                Malv
+              </motion.span>
             </Link>
 
             {/* Desktop Navigation */}
