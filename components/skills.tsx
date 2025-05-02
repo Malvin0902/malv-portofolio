@@ -26,25 +26,22 @@ const skillCategories = [
   },
 ]
 
-// Animation variants for staggered animations
-const containerVariants = {
-  hidden: { opacity: 0 },
+// Animation variants for cool animation effects
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.9, rotate: -5 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+    scale: 1,
+    rotate: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
   },
 }
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-    },
+const hoverVariants = {
+  hover: {
+    scale: 1.05,
+    rotate: 2,
+    transition: { duration: 0.3, ease: "easeInOut" },
   },
 }
 
@@ -66,14 +63,18 @@ export default function Skills() {
         </motion.div>
 
         <motion.div
-          variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           className="grid md:grid-cols-3 gap-8"
         >
           {skillCategories.map((category, index) => (
-            <motion.div key={index} variants={itemVariants}>
+            <motion.div
+              key={index}
+              variants={cardVariants}
+              whileHover="hover"
+              className="relative"
+            >
               <Card className="h-full border border-border/50 bg-card/50 backdrop-blur-sm hover:shadow-md transition-all duration-300">
                 <CardHeader className="flex flex-row items-center gap-4">
                   <div className="p-2 rounded-full bg-primary/10">{category.icon}</div>

@@ -54,25 +54,26 @@ export default function AboutMe() {
       transition: {
         duration: 0.8,
         ease: [0.22, 1, 0.36, 1],
-        staggerChildren: 0.1,
       },
     },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, scale: 0.95, rotate: -5 },
     visible: {
       opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
+      scale: 1,
+      rotate: 0,
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
     },
   }
 
   const socialVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0, scale: 0.8, rotate: -10 },
     visible: (i: number) => ({
       opacity: 1,
       scale: 1,
+      rotate: 0,
       transition: {
         delay: 0.3 + i * 0.1,
         duration: 0.5,
@@ -169,9 +170,9 @@ export default function AboutMe() {
             </div>
 
             <motion.p className="text-lg leading-relaxed" variants={itemVariants}>
-            Hi, I’m Malvin — full stack developer by day, bug whisperer by night.
-            I build web apps, fix things I broke five minutes ago, and occasionally touch grass.
-            Currently studying Computer Science at UI, aka trying to survive both React and real life.
+              Hi, I’m Malvin — full stack developer by day, bug whisperer by night.
+              I build web apps, fix things I broke five minutes ago, and occasionally touch grass.
+              Currently studying Computer Science at UI, aka trying to survive both React and real life.
             </motion.p>
 
             <motion.div className="mt-8" variants={itemVariants}>
