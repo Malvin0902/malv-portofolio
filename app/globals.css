@@ -52,11 +52,31 @@
 @layer base {
   * {
     @apply border-border;
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
-      transform, filter, backdrop-filter;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
   }
+  
+  /* Apply transitions only to interactive elements and specific classes instead of all elements */
+  .has-transition,
+  a, button, input, select, textarea,
+  .animated-element, .interactive {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+  
+  /* Separate class for layout transitions to avoid flickering */
+  .transition-transform {
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+  
+  /* Separate class for shadow transitions */
+  .transition-shadow {
+    transition-property: box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+  
   body {
     @apply bg-background text-foreground;
     background-image: radial-gradient(circle at 100% 0%, rgba(0, 0, 0, 0.02) 0%, transparent 25%),
@@ -65,6 +85,7 @@
   }
 }
 
+/* Layout and Page Components */
 .hero-gradient {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.05) 100%);
 }
@@ -73,7 +94,7 @@
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.05) 100%);
 }
 
-/* Smooth scrolling */
+/* Accessibility and User Experience */
 html {
   scroll-behavior: smooth;
 }
@@ -84,12 +105,11 @@ html {
   }
 }
 
-/* Prevent body scroll when modal is open */
 body.modal-open {
   overflow: hidden;
 }
 
-/* Enhanced shadows */
+/* Shadows and Effects */
 .shadow-soft {
   box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.1);
 }
@@ -106,12 +126,12 @@ body.modal-open {
   box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.3);
 }
 
-/* Gradient text */
+/* Text Effects */
 .gradient-text {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400;
 }
 
-/* Animated underline */
+/* Interactive Elements */
 .animated-underline {
   position: relative;
 }
@@ -131,7 +151,7 @@ body.modal-open {
   width: 100%;
 }
 
-/* Noise texture */
+/* Visual Effects */
 .noise {
   position: fixed;
   top: 0;
@@ -141,10 +161,40 @@ body.modal-open {
   pointer-events: none;
   z-index: 100;
   opacity: 0.03;
+  /* Using optimized SVG data URI for better performance */
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* 3D perspective for cards */
+/* 3D Effects */
 .perspective {
   perspective: 1000px;
+}
+
+/* Print Styles */
+@media print {
+  .noise {
+    display: none;
+  }
+  
+  * {
+    transition: none !important;
+  }
+}
+
+/* Utility class to disable transitions for performance */
+.no-transition {
+  transition: none !important;
+}
+
+/* Fix for Safari and Edge/Zen browser flickering */
+@supports (-webkit-hyphens:none) {
+  * {
+    /* Disable backface visibility which can cause flickering in WebKit */
+    backface-visibility: hidden;
+  }
+  
+  /* Reduce the number of elements that get hardware acceleration */
+  .hardware-accelerated {
+    transform: translateZ(0);
+  }
 }
